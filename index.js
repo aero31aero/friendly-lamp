@@ -97,6 +97,7 @@ task3 = function() {
 	var color2 = getColor(200,250,250);
 	var color3 = getColorInBetween(color1,color2,20);
 	console.log(color3);
+
   // See the output in JavaScript Console.
 	// Notice that we are creating 2 colors, and then finding a color in between them.
 	// TODO: Add an argument called percent to getColorInBetween() so that we don't
@@ -105,7 +106,8 @@ task3 = function() {
 
 // TODO: Task four, combine it all, all by yourself.
 
-var task4 = function() {
+var task4 = function() 
+{
 	// Here, you will write/copy from above code to achieve the following:
 	// Create a timer triggered by the <enter> key that changes the background
 	// color of the page with each second, except, here's the deal:
@@ -113,27 +115,65 @@ var task4 = function() {
 	// Example: black, dark grey, medium gray, light grey, white.
 
 	// Some sample code could look like:
+	var getColorString = function(color) 
+	{
+		return "rgb(" + color.red + "," + color.green + "," + color.blue + ")";
+	}
+	var getColor = function(red, green, blue)
+	{
+		return {
+			red: red,
+			green: green,
+			blue: blue,
+		};
+	}
+	var Percent=100;
 	var startColor = getColor(100,200,250);
 	var endColor = getColor(200,250,100);
 	var body = document.getElementsByTagName('body')[0];
-	body.addEventListener("keyup", function(keyevent) {
+	body.addEventListener("keyup", function(keyevent) 
+	{
 	    if (keyevent.keyCode == 13) { // enter key keycode
 	        startTimer(5);
 	        return false;
 	    }
+	});
 	var timedisplay = document.getElementById('timedisplay');
-	var startTimer = function(seconds){
-		var interval = setInterval(function(){
+	var startTimer = function(seconds)
+	{
+		var interval = setInterval(function()
+		{
 			seconds--;
 			timedisplay.innerHTML=seconds;
-			if (seconds < 0){
+			body.style.background = color();
+			Percent-=20;
+			if (seconds < 0)
+			{
 				clearInterval(interval); // delete the timer
 				timedisplay.innerHTML="Hurray!"; //display finishing message
 			}
 		}, 1000);
 	};
+	var color= function ()
+	{
+	var getColorInBetween = function(color1,color2,percent)
+	{
+		var getMiddleNumber = function(num1, num2, percent)
+		{
+			var ratio = percent/100;
+			return Math.floor(num1*ratio + num2*(1-ratio));
+		}
+		var red = getMiddleNumber(startColor.red, endColor.red, percent);
+		var green = getMiddleNumber(startColor.green, endColor.green, percent);
+		var blue = getMiddleNumber(startColor.blue, endColor.blue, percent);
+		return getColor(red, green, blue);
 
-	});
+	};
+	var colorfinal= getColorInBetween(startColor, endColor, Percent);
+	return getColorString(colorfinal);
+
+	};
+};
 
 	// Complete this code, and then uncomment the line at the end of the file to
 	// run this task. Also, comment the other three tasks so that they do not run.
@@ -142,10 +182,10 @@ var task4 = function() {
 	// You are almost there. I know this task is slightly larger, but doing this means
 	// you can now understand JavaScript code and thus, can go ahead to create web apps
 	// and interactive web sites that you want. Best of luck!
-};
+
 
 // Run Tasks
 //task1();
 //task2();
-task3();
-// task4();
+//task3();
+task4();
