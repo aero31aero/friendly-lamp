@@ -82,20 +82,21 @@ task3 = function() {
 			blue: blue,
 		};
 	}
-	var getColorInBetween = function(color1, color2,percent){
+	var getColorInBetween = function(color1, color2, percent){
 		var getMiddleNumber = function(num1, num2, percent){
 			var ratio = percent/100;
+			percent-=20;
 			return Math.floor(num1*ratio + num2*(1-ratio));
 		}
-		var red = getMiddleNumber(color1.red, color2.red, 50);
-		var green = getMiddleNumber(color1.green, color2.green, 50);
-		var blue = getMiddleNumber(color1.blue, color2.blue, 50);
+		var red = getMiddleNumber(color1.red, color2.red, 100);
+		var green = getMiddleNumber(color1.green, color2.green, 100);
+		var blue = getMiddleNumber(color1.blue, color2.blue, 100);
 		return getColor(red, green, blue);
 	}
 
-	var color1 = getColor(250,100,200);
-	var color2 = getColor(200,250,250);
-	var color3 = getColorInBetween(color1,color2,90);
+	var color1 = getColor(100,200,250);
+	var color2 = getColor(200,250,100);
+	var color3 = getColorInBetween(color1,color2,100);
 	console.log(color3); // See the output in JavaScript Console.
 	// Notice that we are creating 2 colors, and then finding a color in between them.
 	// TODO: Add an argument called percent to getColorInBetween() so that we don't
@@ -120,6 +121,19 @@ var task4 = function() {
 	        startTimer(5);
 	        return false;
 	    }
+	var timedisplay = document.getElementById('timedisplay');
+	var startTimer = function(seconds){
+	var interval = setInterval(function(){
+			seconds--;
+			timedisplay.innerHTML=seconds;
+			task3();			
+			if (seconds < 0){
+				clearInterval(interval); // delete the timer
+				timedisplay.innerHTML="Hurray!"; //display finishing message
+			}
+		}, 1000);
+	};
+
 	});
 
 	// Complete this code, and then uncomment the line at the end of the file to
