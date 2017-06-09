@@ -127,14 +127,23 @@ var task4 = function()
 			blue: blue,
 		};
 	}
-	var Percent=100;
-	var startColor = getColor(100,200,250);
-	var endColor = getColor(200,250,100);
+	var getRandomColor = function() {
+		var red = Math.floor(Math.random()*100+150);
+		var green = Math.floor(Math.random()*100+150);
+		var blue = Math.floor(Math.random()*100+150);
+		return getColor(red, green, blue);
+	}
+	var Percent;
+	var startColor = getRandomColor();
+	var endColor = getRandomColor();
 	var body = document.getElementsByTagName('body')[0];
 	body.addEventListener("keyup", function(keyevent) 
 	{
 	    if (keyevent.keyCode == 13) { // enter key keycode
-	        startTimer(5);
+	        startColor = endColor;
+			endColor = getRandomColor();
+			Percent=100;
+	        startTimer(50);
 	        return false;
 	    }
 	});
@@ -146,31 +155,30 @@ var task4 = function()
 			seconds--;
 			timedisplay.innerHTML=seconds;
 			body.style.background = color();
-			Percent-=20;
+			Percent-=2;
 			if (seconds < 0)
 			{
 				clearInterval(interval); // delete the timer
 				timedisplay.innerHTML="Hurray!"; //display finishing message
 			}
-		}, 1000);
+		}, 5);
 	};
-	var color= function ()
-	{
-	var getColorInBetween = function(color1,color2,percent)
-	{
-		var getMiddleNumber = function(num1, num2, percent)
+	var color = function () {
+		var getColorInBetween = function(color1,color2,percent)
 		{
-			var ratio = percent/100;
-			return Math.floor(num1*ratio + num2*(1-ratio));
-		}
-		var red = getMiddleNumber(startColor.red, endColor.red, percent);
-		var green = getMiddleNumber(startColor.green, endColor.green, percent);
-		var blue = getMiddleNumber(startColor.blue, endColor.blue, percent);
-		return getColor(red, green, blue);
+			var getMiddleNumber = function(num1, num2, percent)
+			{
+				var ratio = percent/100;
+				return Math.floor(num1*ratio + num2*(1-ratio));
+			}
+			var red = getMiddleNumber(startColor.red, endColor.red, percent);
+			var green = getMiddleNumber(startColor.green, endColor.green, percent);
+			var blue = getMiddleNumber(startColor.blue, endColor.blue, percent);
+			return getColor(red, green, blue);
 
-	};
-	var colorfinal= getColorInBetween(startColor, endColor, Percent);
-	return getColorString(colorfinal);
+		};
+		var colorfinal= getColorInBetween(startColor, endColor, Percent);
+		return getColorString(colorfinal);
 
 	};
 };
