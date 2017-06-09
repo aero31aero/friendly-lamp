@@ -82,7 +82,7 @@ task3 = function() {
 			blue: blue,
 		};
 	}
-	var getColorInBetween = function(color1, color2){
+	var getColorInBetween = function(color1, color2,percent){
 		var getMiddleNumber = function(num1, num2, percent){
 			var ratio = percent/100;
 			return Math.floor(num1*ratio + num2*(1-ratio));
@@ -95,7 +95,7 @@ task3 = function() {
 
 	var color1 = getColor(250,100,200);
 	var color2 = getColor(200,250,250);
-	var color3 = getColorInBetween(color1,color2);
+	var color3 = getColorInBetween(color1,color2,90);
 	console.log(color3); // See the output in JavaScript Console.
 	// Notice that we are creating 2 colors, and then finding a color in between them.
 	// TODO: Add an argument called percent to getColorInBetween() so that we don't
