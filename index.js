@@ -54,7 +54,8 @@ var task2 = function() {
 	var startTimer = function(seconds){
 		var interval = setInterval(function(){
 			seconds--;
-			// TODO: Your code goes here.
+			timedisplay.innerHTML=seconds;
+			task1();
 			if (seconds < 0){
 				clearInterval(interval); // delete the timer
 				timedisplay.innerHTML="Hurray!"; //display finishing message
