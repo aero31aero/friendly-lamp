@@ -1,4 +1,4 @@
- var task1=function(){ 
+ var task1 =function(){ 
 var getRandomColor = function() {
 var red = Math.floor(Math.random() * (255 - 200)) + 200;
 var green = Math.floor(Math.random() * (255 - 200)) + 200;
