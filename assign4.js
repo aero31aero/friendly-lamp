@@ -21,7 +21,7 @@ var startTimer = function(seconds){
 var interval = setInterval(function(){
 seconds--;
                         task1();
-                        timedisplay.innerhtml=seconds;
+                        timedisplay.innerHTML=seconds;
 if (seconds < 0){
 clearInterval(interval); // delete the timer
 timedisplay.innerHTML="Hurray!"; //display finishing message
@@ -58,6 +58,27 @@ console.log(color3); // See the output in JavaScript Console.
 
 };
 var task4 = function() {
+var getColorString = function(color) {
+return "rgb(" + color.red + "," + color.green + "," + color.blue + ")";
+}
+var getColor = function(red, green, blue){
+return {
+red: red,
+green: green,
+blue: blue,
+};
+}
+var getColorInBetween = function(color1, color2,percent){
+var getMiddleNumber = function(num1, num2, percent){
+var ratio = percent/100;
+return Math.floor(num1*ratio + num2*(1-ratio));
+}
+var red = getMiddleNumber(color1.red, color2.red, percent);
+var green = getMiddleNumber(color1.green, color2.green, percent);
+var blue = getMiddleNumber(color1.blue, color2.blue, percent);
+return getColor(red, green, blue);
+}
+
 
 var startColor = getColor(100,200,250);
 var endColor = getColor(200,250,100);
