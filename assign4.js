@@ -29,7 +29,7 @@ timedisplay.innerHTML="Hurray!"; //display finishing message
 }, 1000);
 };
 };
-task3 = function() {
+ var task3 = function() {
 var getColorString = function(color) {
 return "rgb(" + color.red + "," + color.green + "," + color.blue + ")";
 }
